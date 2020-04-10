@@ -29,7 +29,7 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@mean-expert/loopback-sdk-builder": "^2.3.1",
-    "eslint": "^3.17.1",
+    "eslint": "^4.18.2",
     "eslint-config-loopback": "^8.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.3",
