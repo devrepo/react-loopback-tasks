@@ -1,0 +1,9 @@
+{
+    "client/src/**/*.js": [
+        "prettier-eslint --write",
+        "git add"
+    ],
+    "client/src/**/*.jsx": [
+        "git add"
+    ]
+}

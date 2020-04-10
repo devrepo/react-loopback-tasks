@@ -1,0 +1,8 @@
+node_modules
+package.json
+config
+dist
+cypress
+*-min.js
+*-min.css
+*.md
