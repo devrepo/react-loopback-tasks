@@ -15,7 +15,11 @@ const removeTasksFromTaskList = (state, taskId) => {
 const updateTaskList = (state, action, taskId) => {
     const updatedTask = action.payload.tasks[taskId];
     const tasksInNewTaskList = state.taskLists[updatedTask.taskListId].tasks;
-    tasksInNewTaskList.push(taskId);
+    if (tasksInNewTaskList){
+        tasksInNewTaskList.push(taskId);
+    }else{
+        state.taskLists[updatedTask.taskListId].tasks = [taskId];
+    }
 };
 
 /**
