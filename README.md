@@ -9,7 +9,8 @@
 - Project in itself used Board as a component.
 
 # Features
-- File layout 
+<pre><code>
+  File layout 
     |- Client
     |   |- build                        -> UI build
     |   |- config                       -> Test & Webpack configuration
@@ -28,6 +29,7 @@
     |   |- tests                        -> Currently only board level test
     |- common                           -> Models config files
     |- Server                           -> Loopback server with server side configs and main files
+</code></pre>
 
 # Practices
 - Components are divided into `Container` componets and `UI` components.
@@ -74,32 +76,32 @@ and some more...
 # Instructions to build code
 - Download this repo
 - Run the following command in root folder
-js```
+```js
     npm install
 ```
 - Ideally it should install both server and then client dependencies
 - Then run the loopback server and webpack-dev-server in development environment:
-js```
+```js
     npm run start-dev
 ```
 - The application should open automatically in your browser. But you can still open it:
-js```
+```js
     http://localhost:8080/
 ```
 - For API explorer, browse:
-js```
+```js
     http://localhost:3000/explorer
 ```
 - For production build:
-js```
+```js
     npm run build
 ```
 It should build the bundle in `build` folder.
 - For tests, run the following command:
-js```
+```js
     npm run test
 ```
 - For E2E tests
-js```
+```js
     npm run cypress:open
 ```
