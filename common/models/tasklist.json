@@ -9,14 +9,27 @@
     "name": {
       "type": "string",
       "required": true
-    },
-    "taskStatusId": {
-      "type": "number",
-      "required": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "board": {
+      "type": "belongsTo",
+      "model": "Board",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "tasks": {
+      "type": "hasMany",
+      "model": "Task",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

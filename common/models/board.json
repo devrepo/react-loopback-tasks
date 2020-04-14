@@ -13,7 +13,16 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "taskLists": {
+      "type": "hasMany",
+      "model": "TaskList",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

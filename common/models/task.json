@@ -17,7 +17,16 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "taskList": {
+      "type": "belongsTo",
+      "model": "TaskList",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

@@ -12,19 +12,28 @@
     "test:watch": "npm run test --watch",
     "test:cover": "npm run test --coverage",
     "cypress:open": "cypress open",
-    "prettier:all": "prettier-eslint --write \"src/**/*.{js,jsx}\"",
+    "prettier:all": "prettier-eslint --write \"$PWD/src/**/*.{js,jsx}\"",
     "prettier:file": "prettier-eslint --write"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@styled-icons/boxicons-solid": "^10.0.0",
     "axios": "^0.19.2",
+    "normalizr": "^3.6.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-awesome-modal": "^2.0.5",
+    "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
+    "styled-components": "^5.1.0",
+    "webpack-jarvis": "^0.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -40,11 +49,14 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/register": "^7.9.0",
     "@babel/runtime": "^7.9.2",
+    "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.3.0",
     "babel-loader": "^8.1.0",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-plugin-styled-components": "^1.10.7",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^7.0.2",
     "css-loader": "^3.5.1",
@@ -63,8 +75,11 @@
     "img-loader": "^3.0.1",
     "jest": "^25.3.0",
     "jest-dom": "^4.0.0",
+    "lodash-webpack-plugin": "^0.11.5",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
+    "prettier-eslint": "^9.0.1",
+    "prettier-eslint-cli": "^5.0.0",
     "url-loader": "^4.1.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
@@ -77,6 +92,10 @@
     ],
     "transform": {
       "^.+\\.js$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/file_mock.js",
+      "\\.(css|less)$": "<rootDir>/mocks/file_mock.js"
     }
   }
 }
