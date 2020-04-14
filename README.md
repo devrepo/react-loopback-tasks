@@ -65,7 +65,7 @@
 - [Axios](https://github.com/axios/axios)
 - [Styled Components](https://styled-components.com/docs)
 - [React Testing Library](https://github.com/testing-library/react-testing-library)
-- [Jest] (https://jestjs.io/en/)
+- [Jest](https://jestjs.io/en/)
 - [Cypress](https://www.cypress.io/)
 - [Webpack](https://webpack.js.org/)
 - [Loopback](https://loopback.io/)
