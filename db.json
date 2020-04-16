@@ -6,8 +6,8 @@
     "RoleMapping": 1,
     "Role": 1,
     "Board": 2,
-    "Task": 1,
-    "TaskList": 1
+    "Task": 8,
+    "TaskList": 5
   },
   "models": {
     "User": {},
@@ -18,7 +18,19 @@
     "Board": {
       "1": "{\"name\":\"Board\",\"id\":1}"
     },
-    "Task": {},
-    "TaskList": {}
+    "Task": {
+      "1": "{\"name\":\"Task 1\",\"status\":1,\"taskListId\":1,\"id\":1}",
+      "2": "{\"name\":\"Task 2\",\"status\":1,\"taskListId\":2,\"id\":2}",
+      "4": "{\"name\":\"Task 3\",\"status\":1,\"taskListId\":2,\"id\":4}",
+      "5": "{\"name\":\"Task 2\",\"status\":1,\"taskListId\":1,\"id\":5}",
+      "6": "{\"name\":\"Task 3\",\"status\":1,\"taskListId\":1,\"id\":6}",
+      "7": "{\"name\":\"Task 3\",\"status\":1,\"taskListId\":1,\"id\":7}"
+    },
+    "TaskList": {
+      "1": "{\"name\":\"To Do\",\"boardId\":1,\"id\":1}",
+      "2": "{\"name\":\"In Progress\",\"boardId\":1,\"id\":2}",
+      "3": "{\"name\":\"Done\",\"boardId\":1,\"id\":3}",
+      "4": "{\"name\":\"Extra\",\"boardId\":1,\"id\":4}"
+    }
   }
 }

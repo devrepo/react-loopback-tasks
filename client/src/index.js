@@ -12,12 +12,10 @@ const GlobalStyle = createGlobalStyle`${reset}`;
 
 ReactDOM.render(
     <BrowserRouter>
-        <>
-            <Provider store={store}>
-                <Board boardId="1" />
-            </Provider>
-            <GlobalStyle />
-        </>
+        <Provider store={store}>
+            <Board boardId="1" />
+        </Provider>
+        <GlobalStyle />
     </BrowserRouter>,
     document.getElementById('root')
 );
