@@ -28,10 +28,10 @@ const addTaskStarted = () => ({
 });
 
 const addTaskSuccess = (data) => {
-    const normalizedResponse = normalize(data, schemas.taskSchema);
+    //const normalizedResponse = normalize(data, schemas.taskSchema);
     return {
         type: types.ADD_TASK_SUCCESS,
-        payload: normalizedResponse.entities
+        payload: data
     };
 };
 

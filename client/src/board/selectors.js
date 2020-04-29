@@ -1,33 +1,23 @@
-import { createSelector } from 'reselect';
-import { NAME } from './constants';
+import { createSelector } from 'redux-orm';
+import orm from './models';
 
-//Helper function to get the board state
-export const getBoard = (state) => state[NAME];
+const Board = createSelector(orm.Board);
+const TaskList = createSelector(orm.TaskList);
+const Task = createSelector(orm.Task)
 
-//Helper function to get the tasklists
-const getTaskListState = (state) => {
-    const { taskLists } = getBoard(state);
-    return taskLists;
-};
-
-//Helper function to filter tasks per tasklist id given from normalized state.
-const getTasksForList = (state, listId) => {
-    const tasksEntries = getBoard(state).tasks;
-    const taskIds = Object.keys(tasksEntries);
-    const filteredTasks = taskIds.filter((taskId) => {
-        return tasksEntries[taskId].taskListId === listId;
-    });
-    const tasks = filteredTasks.map((id) => {
-        return tasksEntries[id];
-    });
-    return tasks;
-};
-
-//Memoized selector for tasklists
-export const getTaskLists = createSelector(
-    [getTaskListState],
-    (taskLists) => taskLists
-);
-
-//Memoized selector for tasks
-export const getTasks = createSelector([getTasksForList], (tasks) => tasks);
+export const getBoard = (state) => {
+    const board = Board(state, 1);
+    return board || {}
+}
+export const getTaskLists = (state) => {
+    const taskLists = TaskList(state);
+    return taskLists || [];
+}
+export const getTasks = (state, taskListId) => {
+    const tasks = Task(state);
+    const filteredTasks = tasks.filter(task => 
+        {
+            return task.taskListId == taskListId
+        })
+    return filteredTasks || [];
+}

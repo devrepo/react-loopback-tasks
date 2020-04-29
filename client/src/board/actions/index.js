@@ -5,6 +5,7 @@ import { editTask } from './edit_task';
 import { removeTask } from './remove_task';
 import { getTaskList } from './get_task_list';
 import { addTaskList } from './add_task_list';
+import {removeTaskList} from './remove_task_list';
 import schemas from './schema';
 
 export default {
@@ -15,5 +16,6 @@ export default {
     removeTask,
     getTaskList,
     addTaskList,
+    removeTaskList,
     schemas
 };

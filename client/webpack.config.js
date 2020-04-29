@@ -12,5 +12,5 @@ const envs = {
 const env = envs[process.env.NODE_ENV || 'development'];
 const envConfig = require(`./config/webpack/webpack.${env}.babel`);
 const finalConfig = webpackMerge(common, envConfig);
-console.log("FinalConfig", finalConfig);
+//console.log("FinalConfig", finalConfig);
 module.exports = finalConfig;

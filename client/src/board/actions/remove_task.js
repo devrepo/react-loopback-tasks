@@ -1,9 +1,7 @@
 import axios from 'axios';
-import { normalize } from 'normalizr';
 
 import { ENDPOINTS_BASE_URL } from '../constants';
 import * as types from '../action_types';
-import schemas from './schema';
 
 export const removeTask = (id) => {
     return (dispatch) => {
@@ -13,6 +11,8 @@ export const removeTask = (id) => {
             .then((res) => {
                 if (res.data.count == 1) {
                     dispatch(removeTaskSuccess(id));
+                }else{
+                    dispatch(removeTaskFailure("Some problem while deleting task"));
                 }
             })
             .catch((err) => {

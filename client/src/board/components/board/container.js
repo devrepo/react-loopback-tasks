@@ -47,6 +47,7 @@ const Error = styled.div`
 
 class Board extends React.Component {
     componentDidMount() {
+        console.log("Board mounted");
         this.props.getBoard(this.props.boardId);
     }
 
@@ -63,6 +64,8 @@ class Board extends React.Component {
 }
 
 Board.propTypes = {
+    name: PropTypes.string,
+    id: PropTypes.number,
     getBoard: PropTypes.func.isRequired,
     boardId: PropTypes.string.isRequired,
     loading: PropTypes.bool,

@@ -14,7 +14,7 @@ export const addTaskList = ({ name, boardId }) => {
                 boardId
             })
             .then((res) => {
-                dispatch(addTaskListSuccess(res.data));
+                dispatch(addTaskListSuccess({...res.data, tasks:[]}));
             })
             .catch((err) => {
                 dispatch(addTaskListFailure(err.message));

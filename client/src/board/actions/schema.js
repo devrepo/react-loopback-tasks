@@ -1,4 +1,4 @@
-import { schema, arrayOf } from 'normalizr';
+import { schema  } from 'normalizr';
 
 const taskSchema = new schema.Entity('tasks');
 const tasklistSchema = new schema.Entity('taskLists', {

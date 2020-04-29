@@ -9,12 +9,17 @@ import TaskItem from './ui';
 import AddTask from './add_task';
 
 class Tasks extends React.Component {
+
+    componentDidMount() {
+        //this.props.getTasks(this.props.taskListId);
+    }
+
     render() {
         const { tasks, onAddTask, onEditTask, onRemoveTask } = this.props;
-        console.log('tasks', tasks);
         return (
             <div data-testid="taskWrapper">
-                {Object.entries(tasks).map(([key, task], index) => {
+                {tasks.map( (task, index) => {
+                    const key = task.id;
                     return (
                         <Draggable key={key} draggableId={task.id.toString()} index={index}>
                             {(provided) => (
@@ -22,7 +27,9 @@ class Tasks extends React.Component {
                                     key={key}
                                     innerRef={provided.innerRef}
                                     provided={provided}
-                                    {...task}
+                                    id={task.id}
+                                    name={task.name}
+                                    taskListId={task.taskListId}
                                     onEditTask={onEditTask}
                                     onRemoveTask={onRemoveTask}
                                 />
@@ -41,7 +48,7 @@ class Tasks extends React.Component {
 }
 
 Tasks.propTypes = {
-    tasks: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+    tasks: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     onAddTask: PropTypes.func,
     onEditTask: PropTypes.func,
     onRemoveTask: PropTypes.func

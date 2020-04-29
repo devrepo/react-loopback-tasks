@@ -3,8 +3,13 @@ module.exports = [
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            'options': {
+                'plugins': ['lodash'],
+                'presets': [['@babel/env', { 'modules': false, 'targets': { 'node': 4 } }]]
+            }
         }
+        
     },
     {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,

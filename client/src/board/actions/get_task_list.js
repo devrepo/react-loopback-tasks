@@ -15,7 +15,8 @@ export const getTaskList = (boardId) => {
                 }
             })
             .then((res) => {
-                dispatch(getTaskListsSuccess(res.data));
+                const manipulatedData = {taskLists: res.data};
+                dispatch(getTaskListsSuccess(manipulatedData));
             })
             .catch((err) => {
                 dispatch(getTaskListsFailure(err.message));
@@ -28,7 +29,8 @@ const getTaskListsStarted = () => ({
 });
 
 const getTaskListsSuccess = (data) => {
-    const normalizedResponse = normalize(data, schemas.tasklistSchema);
+    const normalizedResponse = normalize(data, { "taskLists": [schemas.tasklistSchema]} );
+    console.log("normalized tl", normalizedResponse);
     return {
         type: types.GET_TASKLISTS_SUCCESS,
         payload: normalizedResponse.entities

@@ -16,10 +16,13 @@ module.exports = {
         extensions: ['*', '.js', '.scss', '.css']
     },
     plugins: [
-        new webpack.ProgressPlugin(),
+        
         new LodashModuleReplacementPlugin({
             // Necessary as a workaround for https://github.com/apollographql/react-apollo/issues/1831
-            flattening: true
+            flattening: true,
+            //Necessart for the shorthands in the collections specially function as _.filter with object as itratee
+            'shorthands': true,
+            'collections': true
         }),
         new HtmlWebpackPlugin({
             template: paths.templatePath,

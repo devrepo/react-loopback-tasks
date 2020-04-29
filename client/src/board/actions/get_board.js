@@ -31,6 +31,7 @@ const getBoardStarted = () => ({
 
 const getBoardSuccess = (data) => {
     const normalizedResponse = normalize(data, schemas.boardSchema);
+    console.log("Normalized Board", normalizedResponse);
     return {
         type: types.GET_BOARD_SUCCESS,
         payload: normalizedResponse.entities

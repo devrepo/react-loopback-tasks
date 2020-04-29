@@ -36,54 +36,65 @@ class TaskLists extends React.Component {
         });
     }
 
-  onDragEnd = (result) => {
-      const { source, destination } = result;
-      if (!destination) {
-          return;
-      }
-      if (source.droppableId !== destination.droppableId) {
-          const { taskLists, moveTask } = this.props;
-          const sourceTaskList = taskLists[source.droppableId];
-          const taskId = sourceTaskList.tasks[source.index];
-          moveTask({ id: taskId, taskListId: destination.droppableId });
-      }
-  };
+    componentDidMount() {   
+        console.log("Tasklist mounted");
+        //this.props.getTaskLists(this.props.boardId);
+    }
 
-  render() {
-      const { taskLists } = this.props;
+    onDragEnd = (result) => {
+        const { source, destination } = result;
+        if (!destination) {
+            return;
+        }
+        if (source.droppableId !== destination.droppableId) {
+            const { taskLists, moveTask } = this.props;
+            
+            const sourceTaskListItem = taskLists.filter((taskList)=> taskList.id == source.droppableId);
+            const sourceTaskList = sourceTaskListItem[0];
+            console.log("Srouce Task List", sourceTaskList.tasks, source.index);
+            const taskId = sourceTaskList.tasks[source.index];
+            console.log("Moving", taskId, destination.droppableId)
+            moveTask({ id: taskId, taskListId: destination.droppableId });
+        }
+    };
 
-      return (
-          <DragDropContext onDragEnd={this.onDragEnd}>
-              <TaskListWrapper data-testid="taskListWrapper">
-                  {Object.entries(taskLists).map(([key, taskList], index) => {
-                      return (
-                          <Droppable droppableId={key} key={key}>
-                              {(provided) => (
-                                  <div ref={provided.innerRef}>
-                                      <TaskListItem {...taskList} />
-                                      {provided.placeholder}
-                                  </div>
-                              )}
-                          </Droppable>
-                      );
-                  })}
-                  {taskLists && Object.keys(taskLists).length < MAX_TASK_LIST && (
-                      <AddTaskList
-                          data-testid="addTaskList"
-                          onAddTaskList={this.handleAddTaskList}
-                      />
-                  )}
-              </TaskListWrapper>
-          </DragDropContext>
-      );
-  }
+    render() {
+        const { taskLists, removeTaskList } = this.props;
+        return (
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                <TaskListWrapper data-testid="taskListWrapper">
+                    {Object.entries(taskLists).map(([key, taskList], index) => {
+                        const {id, name, boardId} = taskList;
+                        const props = { id, name, boardId, onDelete:removeTaskList };
+                        return (
+                            <Droppable droppableId={id.toString()} key={id}>
+                                {(provided) => (
+                                    <div ref={provided.innerRef}>
+                                        <TaskListItem {...props}/>
+                                        {provided.placeholder}
+                                    </div>
+                                )}
+                            </Droppable>
+                        );
+                    })}
+                    {taskLists && Object.keys(taskLists).length < MAX_TASK_LIST && (
+                        <AddTaskList
+                            data-testid="addTaskList"
+                            onAddTaskList={this.handleAddTaskList}
+                        />
+                    )}
+                </TaskListWrapper>
+            </DragDropContext>
+        );
+    }
 }
 
 TaskLists.propTypes = {
     boardId: PropTypes.string.isRequired,
-    taskLists: PropTypes.object.isRequired,
+    taskLists: PropTypes.array.isRequired,
     onAddTaskList: PropTypes.func,
-    moveTask: PropTypes.func
+    moveTask: PropTypes.func,
+    removeTaskList: PropTypes.func
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -96,6 +107,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         moveTask: (taskDetails) => {
             dispatch(actions.editTask(taskDetails));
+        },
+        removeTaskList: (listId) => {
+            dispatch(actions.removeTaskList(listId));
         }
     };
 };

@@ -5,17 +5,18 @@ import { ENDPOINTS_BASE_URL } from '../constants';
 import * as types from '../action_types';
 import schemas from './schema';
 
-export const getTasks = (listId) => {
+export const getTasks = (taskListId) => {
     return (dispatch) => {
         dispatch(getTasksStarted());
         axios
             .get(`${ENDPOINTS_BASE_URL}Tasks`, {
                 params: {
-                    filter: { where: { listId } }
+                    filter: { where: { taskListId } }
                 }
             })
             .then((res) => {
-                dispatch(getTasksSuccess(res.data));
+                const manipulatedData = {tasks: res.data};
+                dispatch(getTasksSuccess(manipulatedData));
             })
             .catch((err) => {
                 dispatch(getTasksFailure(err.message));
@@ -28,7 +29,7 @@ const getTasksStarted = () => ({
 });
 
 const getTasksSuccess = (data) => {
-    const normalizedResponse = normalize(data, schemas.taskSchema);
+    const normalizedResponse = normalize(data, { "tasks": [schemas.taskSchema]});
     return {
         type: types.GET_TASKS_SUCCESS,
         payload: normalizedResponse.entities

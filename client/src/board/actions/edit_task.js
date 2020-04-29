@@ -31,10 +31,10 @@ const editTaskStarted = () => ({
 });
 
 const editTaskSuccess = (data) => {
-    const normalizedResponse = normalize(data, schemas.taskSchema);
+    //const normalizedResponse = normalize(data, schemas.taskSchema);
     return {
         type: types.UPDATE_TASK_SUCCESS,
-        payload: normalizedResponse.entities
+        payload: data
     };
 };
 
@@ -42,7 +42,7 @@ const moveTaskSuccess = (data) => {
     const normalizedResponse = normalize(data, schemas.taskSchema);
     return {
         type: types.MOVE_TASK_SUCCESS,
-        payload: normalizedResponse.entities
+        payload: data
     };
 };
 

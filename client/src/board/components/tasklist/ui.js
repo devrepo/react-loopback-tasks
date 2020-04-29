@@ -17,11 +17,19 @@ const Item = styled.div`
   min-width: 300px;
   margin: 5px;
 `;
+
+const Close = styled.div`
+  &:after {
+    content: '\\d7';
+  }`;
+
 const TaskListItem = (props) => {
-    const { id, ...elementProps } = props;
+    const { id, name, onDelete, ...elementProps } = props;
     return (
         <Item data-testid="taskListItem">
-            <Header>{props.name}</Header>
+            <Header>{name}
+            <Close onClick={()=>onDelete(id)}/>
+            </Header>
             <Tasks {...elementProps} taskListId={id} />
         </Item>
     );
